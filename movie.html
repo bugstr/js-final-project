@@ -19,7 +19,7 @@
           <h1 class="logo--title">MovieBase</h1>
         </figure>
         <div class="nav__links">
-          <a class="nav__link link__hover-effect" href="#">Home</a>
+          <a class="nav__link link__hover-effect" href="index.html">Home</a>
           <a class="nav__link link__hover-effect" href="#">Find Your Movie</a>
           <button class="btn-contact">Contact</button>
         </div>
@@ -32,9 +32,14 @@
             <h1 class="header__content--title">Browse for a movie</h1>
             <p class="header__content--subtitle">Search for any title or word from a movie and we'll find it.</p>
             <div class="input-wrapper">
-              <input class="input" type="text" placeholder="Search by title or keyword">
+              <input id="searchInput" type="text" placeholder="Search by title or keyword">
+              <button id="searchButton" class="search-button" onclick="searchMovies()">
+                Search
+              </button>
             </div>
           </div>
+          <div id="results"></div>
+        </div>
     </header>
   </section>
 
