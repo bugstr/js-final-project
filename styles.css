@@ -13,6 +13,7 @@ html {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 ul {
@@ -44,6 +45,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 
 .logo {
@@ -240,8 +242,10 @@ nav {
 
 .movie-poster {
   width: 100%;
-  height: auto;
-  margin-bottom: 16px;
+  max-width: 250px;
+  height: 400px;
+  margin-bottom: 8px;
+  border: 4px solid black;
 }
 
 .movie__description {
@@ -259,4 +263,36 @@ nav {
 .movie__description--title {
   width: 100%;
   max-width: 500px;
+}
+
+/*
+
+  LOADING
+
+*/
+
+.results__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.results__loading .fa-spinner {
+  display: block !important;
+}
+
+.fa-spinner {
+  animation: rotate 600ms infinite linear;
+  font-size: 60px;
+  display: none !important;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
