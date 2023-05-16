@@ -1,41 +1,57 @@
-// API http://www.omdbapi.com/?apikey=6e4d25bd&s=fast
+const API = `http://www.omdbapi.com/?apikey=6e4d25bd&s=`;
 
-const movieSearch = document.querySelector("#searchInput");
-const searchButton = document.getElementById("searchButton");
 const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const sort = document.getElementById("filter");
 
-// load movies from API
+// Event listener for search button click
+searchButton.addEventListener("click", searchMovies);
+
+// Event listener for Enter key press in the input
+searchInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    searchMovies();
+  }
+});
+
+// Event listener for select box change
+sort.addEventListener("change", searchMovies);
+
+// Load movies from API
 async function searchMovies() {
   const searchQuery = document.getElementById("searchInput").value;
-
   const resultsWrapper = document.querySelector(".results__wrapper");
   const spinner = document.querySelector(".fa-spinner");
+  const sortBy = sort.value;
 
   document.querySelector("#results").style.display = "none";
   resultsWrapper.classList += " results__loading";
   spinner.style.display = "block";
 
   try {
-    const response = await fetch(
-      `http://www.omdbapi.com/?apikey=6e4d25bd&s=${searchQuery}`
-    );
+    const response = await fetch(`${API}${searchQuery}`);
     const data = await response.json();
 
     if (data.Response === "True") {
-      const movies = data.Search;
-      if (movies && movies.length > 0) {
-        const movieElements = movies
-          .slice(0, 6)
-          .map((movie) => generateMovieElement(movie));
-        // setTimeout(() => {
-          displayMovies(movieElements);
-        // }, 2000);
+      const movies = data.Search.slice(0, 6);
+      if (movies.length > 0) {
+
+        if (sortBy === "A-Z") {
+          // Sort movies by title
+          movies.sort((a, b) => a.Title.localeCompare(b.Title));
+        } else if (sortBy === "YEAR") {
+          // Sort movies by release date (newest first)
+          movies.sort((a, b) => b.Year.localeCompare(a.Year));
+        }
+
+        const movieElements = movies.map(generateMovieElement);
+        displayMovies(movieElements);
         document.querySelector("#results").style.display = "flex";
       } else {
         displayError("No movies found.");
       }
     } else {
-      displayError(data.Error);
+      displayError("No movies found.");
     }
   } catch (error) {
     displayError("An error occurred: " + error);
@@ -45,6 +61,7 @@ async function searchMovies() {
   spinner.style.display = "none";
 }
 
+//Movie HTML
 function generateMovieElement(movie) {
   const movieTitle = movie.Title;
   const movieYear = movie.Year;
@@ -73,12 +90,4 @@ function displayError(errorMessage) {
   resultsContainer.innerHTML = `<p>${errorMessage}</p>`;
 }
 
-// Event listener for search button click
-searchButton.addEventListener("click", searchMovies);
-
-// Event listener for Enter key press in the input field
-searchInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    searchMovies();
-  }
-});
+searchMovies();
