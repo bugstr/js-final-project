@@ -90,4 +90,3 @@ function displayError(errorMessage) {
   resultsContainer.innerHTML = `<p>${errorMessage}</p>`;
 }
 
-searchMovies();

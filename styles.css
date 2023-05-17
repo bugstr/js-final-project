@@ -39,6 +39,7 @@ li {
 nav {
   height: 80px;
   display: flex;
+  animation: fadeIn ease 2s;
 }
 
 .logo--wrapper {
@@ -113,7 +114,7 @@ nav {
   font-weight: 700;
   color: white;
   background-color: black;
-  cursor: pointer;
+  cursor: not-allowed;
   transition: all 300ms ease;
 }
 
@@ -138,11 +139,22 @@ nav {
 .header__content--title {
   font-size: 40px;
   margin-bottom: 16px;
+  animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .header__content--subtitle {
   font-size: 24px;
   margin-bottom: 24px;
+  animation: fadeIn ease 2s;
 }
 
 .header__btn-search {
@@ -154,6 +166,7 @@ nav {
   background-color: black;
   cursor: pointer;
   transition: all 300ms ease;
+  animation: fadeIn ease 2s;
 }
 
 .header__btn-search:hover {
@@ -169,6 +182,7 @@ nav {
   width: 100%;
   max-width: 600px;
   height: auto;
+  animation: fadeIn ease 2s;
 }
 
 .results__header {
@@ -176,6 +190,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
+  animation: fadeIn ease 2s;
 }
 
 #filter {
@@ -195,6 +210,7 @@ nav {
   display: flex;
   justify-content: center;
   position: relative;
+  animation: fadeIn ease 2s;
 }
 
 #searchInput {
@@ -224,10 +240,6 @@ nav {
 
 .search-button:hover {
   background-color: #242424;
-}
-
-.search-button:active {
-  padding: 11px 17px;
 }
 
 /*
@@ -306,5 +318,73 @@ nav {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/*
+
+  MEDIA QUERY
+
+*/
+
+/* Small phones, tablets, large smart phones */
+@media (max-width: 768px) {
+  nav {
+    height: 60px;
+  }
+  .nav__links {
+    display: none;
+  }
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+  .logo--title {
+    font-size: 20px;
+  }
+  .container {
+    padding: 8px 0;
+  }
+  .row {
+    max-width: 300px;
+  }
+  .header__content {
+    align-items: start;
+  }
+  .header__content--title {
+    font-size: 30px;
+  }
+  .header__content--subtitle {
+    font-size: 16px;
+  }
+  #searchInput {
+    height: 40px;
+    font-size: 14px;
+  }
+  .search-button {
+    padding: 6px 10px;
+    right: 5px;
+    font-size: 12px;
+  }
+  .results__header {
+    padding: 0;
+  }
+  .results__header--title {
+    font-size: 16px;
+  }
+  #filter {
+    padding: 4px 8px;
+  }
+  #results {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 24px;
+  }
+  .movie {
+    width: 100%;
+  }
+  .movie__description {
+    font-size: 20px;
+    max-width: 250px;
   }
 }
