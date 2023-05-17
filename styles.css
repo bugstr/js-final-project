@@ -155,6 +155,7 @@ nav {
   font-size: 24px;
   margin-bottom: 24px;
   animation: fadeIn ease 2s;
+  text-align: center;
 }
 
 .header__btn-search {
@@ -347,9 +348,6 @@ nav {
   }
   .row {
     max-width: 300px;
-  }
-  .header__content {
-    align-items: start;
   }
   .header__content--title {
     font-size: 30px;
