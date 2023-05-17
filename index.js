@@ -35,7 +35,6 @@ async function searchMovies() {
     if (data.Response === "True") {
       const movies = data.Search.slice(0, 6);
       if (movies.length > 0) {
-
         if (sortBy === "A-Z") {
           // Sort movies by title
           movies.sort((a, b) => a.Title.localeCompare(b.Title));
@@ -88,5 +87,5 @@ function displayMovies(movieElements) {
 function displayError(errorMessage) {
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = `<p>${errorMessage}</p>`;
+  resultsContainer.style.display = "flex";
 }
-
